@@ -25,6 +25,9 @@ class ViewController: UIViewController {
     
     //class variables
     let points:[Int] = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 40, 40, 40, 50, 50, 50, 100, 100, 250, 500]
+    let words: [String] = ["Banana","Busy","Laptop"]
+    var chosenWord: String = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +39,13 @@ class ViewController: UIViewController {
 
     // Called whenever the lever is pressed, starting off the process of randomly getting a point value, and then choosing a letter
     @IBAction func leverPressed(_ sender: UIButton) {
-        let selectedPoints = points.randomElement()
-        //pointsDisplay.text = String(selectedPoints)
+        let selectedPoint = points.randomElement()!
+        pointsDisplay.text =  String(selectedPoint)
+        // if we change this to get an array from the internet we should do a
+        // real nil check here
+        chosenWord = words.randomElement()!
+        print("Word chosen was: " + chosenWord + " Point value is: " + String(selectedPoint))
+        
         
         //figure out how to have keyboard pop up for user entry. Store user entered letter
     }
