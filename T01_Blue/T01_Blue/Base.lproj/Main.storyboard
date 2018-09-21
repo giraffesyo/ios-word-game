@@ -71,34 +71,6 @@
                                 <color key="textColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tile1_blank_67" translatesAutoresizingMaskIntoConstraints="NO" id="2MD-Yf-afL" userLabel="1_1">
-                                <rect key="frame" x="157" y="133" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tile1_blank_67" translatesAutoresizingMaskIntoConstraints="NO" id="EEw-I3-VSR" userLabel="1_2">
-                                <rect key="frame" x="215" y="133" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tile1_blank_67" translatesAutoresizingMaskIntoConstraints="NO" id="Cll-wQ-Mbn" userLabel="2_1">
-                                <rect key="frame" x="65" y="195" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tile1_blank_67" translatesAutoresizingMaskIntoConstraints="NO" id="DJT-K6-3qe" userLabel="2_2">
-                                <rect key="frame" x="125" y="195" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tile1_blank_67" translatesAutoresizingMaskIntoConstraints="NO" id="mLv-IO-RIr" userLabel="2_3">
-                                <rect key="frame" x="183" y="195" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tile1_blank_67" translatesAutoresizingMaskIntoConstraints="NO" id="bSe-NT-XPU" userLabel="2_4">
-                                <rect key="frame" x="241" y="195" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tile1_blank_67" translatesAutoresizingMaskIntoConstraints="NO" id="BuO-VC-0YN" userLabel="2_5">
-                                <rect key="frame" x="299" y="195" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xse-J2-c8W" userLabel="PointSelectionBackground">
                                 <rect key="frame" x="0.0" y="399" width="414" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -139,23 +111,26 @@
                                     <action selector="leverPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YQS-gA-wOP"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rim-s6-8Tx">
+                                <rect key="frame" x="21" y="187" width="376" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="center" ambiguous="YES" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="LgP-wn-6ZU">
+                                        <rect key="frame" x="0.0" y="0.0" width="376" height="67"/>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="oneOne" destination="2MD-Yf-afL" id="DxC-pn-htb"/>
-                        <outlet property="oneTwo" destination="EEw-I3-VSR" id="5mG-dX-Fax"/>
+                        <outlet property="BoxesStackView" destination="LgP-wn-6ZU" id="uLE-Go-qfh"/>
                         <outlet property="pointsDisplay" destination="sKa-HZ-2jt" id="szB-Yt-LQE"/>
                         <outlet property="scoreDisplay" destination="nxR-sN-LFS" id="Cif-KB-yqE"/>
                         <outlet property="strikeOne" destination="dRT-DX-5Ab" id="s7I-FM-Whh"/>
                         <outlet property="strikeThree" destination="ydM-Lp-anq" id="iGu-dm-SH0"/>
                         <outlet property="strikeTwo" destination="T6w-bn-do2" id="YYj-UX-i4j"/>
-                        <outlet property="twoFive" destination="BuO-VC-0YN" id="DHT-nX-GVd"/>
-                        <outlet property="twoFour" destination="bSe-NT-XPU" id="e8g-mT-jXV"/>
-                        <outlet property="twoOne" destination="Cll-wQ-Mbn" id="dFp-kc-hSa"/>
-                        <outlet property="twoThree" destination="mLv-IO-RIr" id="SBM-WT-Xl3"/>
-                        <outlet property="twoTwo" destination="DJT-K6-3qe" id="nzq-9z-xSV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -166,6 +141,5 @@
     <resources>
         <image name="object_04_star" width="400" height="400"/>
         <image name="object_07_tank" width="400" height="400"/>
-        <image name="tile1_blank_67" width="67" height="67"/>
     </resources>
 </document>

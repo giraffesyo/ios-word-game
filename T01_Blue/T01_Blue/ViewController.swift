@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     let points:[Int] = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 40, 40, 40, 50, 50, 50, 100, 100, 250, 500]
     let words: [String] = ["Banana","Busy","Laptop"]
     var chosenWord: String = ""
+    var boxes: [LetterBox] = []
     
     
     override func viewDidLoad() {
@@ -37,20 +38,48 @@ class ViewController: UIViewController {
         strikeThree.isHidden = true
     }
 
+    @IBOutlet var BoxesStackView: UIStackView!
     // Called whenever the lever is pressed, starting off the process of randomly getting a point value, and then choosing a letter
     @IBAction func leverPressed(_ sender: UIButton) {
+
+        emptyBoxes()
+        
+        
         let selectedPoint = points.randomElement()!
         pointsDisplay.text =  String(selectedPoint)
         // if we change this to get an array from the internet we should do a
         // real nil check here
         chosenWord = words.randomElement()!
         print("Word chosen was: " + chosenWord + " Point value is: " + String(selectedPoint))
+        for letter in chosenWord {
+            let box: LetterBox = LetterBox(letter: letter)
+            boxes.append(box)
+        }
         
+        
+        for box in boxes {
+            BoxesStackView.addArrangedSubview(box.IMAGEVIEW)
+        }
+        print(boxes.count)
         
         //figure out how to have keyboard pop up for user entry. Store user entered letter
+    
+    
+    
     }
     
-    //create function to check if keyboard entry matches any of the puzzle pieces
-    
-}
+    private func emptyBoxes() {
+        if self.boxes.count != 0 {
+            for box in self.boxes {
+                BoxesStackView.removeArrangedSubview(box.IMAGEVIEW)
+                box.IMAGEVIEW.removeFromSuperview()
+            }
+            
+            boxes = []
+        }
+    }
 
+    
+    //create function to check if keyboard entry matches any of the puzzle pieces
+
+}
