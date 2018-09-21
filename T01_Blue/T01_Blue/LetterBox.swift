@@ -1,10 +1,6 @@
-//
 //  LetterBox.swift
 //  T01_Blue
-//
-//  Created by Michael McQuade on 9/20/18.
-//  Copyright © 2018 Josh Sheridan. All rights reserved.
-//
+
 
 import UIKit
 
@@ -21,7 +17,8 @@ class LetterBox: NSObject {
     }
     
     public func reveal() {
+        print(String(self.LETTER) + " was revealed")
         let letter = String(self.LETTER).uppercased()
-        self.IMAGEVIEW = UIImageView(image: LETTERIMAGES[Int(UnicodeScalar(letter)!.value) - 65])
+        self.IMAGEVIEW.image = LETTERIMAGES[Int(UnicodeScalar(letter)!.value) - 65]
     }
 }
