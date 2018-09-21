@@ -41,10 +41,7 @@ class ViewController: UIViewController {
     @IBOutlet var BoxesStackView: UIStackView!
     // Called whenever the lever is pressed, starting off the process of randomly getting a point value, and then choosing a letter
     @IBAction func leverPressed(_ sender: UIButton) {
-
         emptyBoxes()
-        
-        
         let selectedPoint = points.randomElement()!
         pointsDisplay.text =  String(selectedPoint)
         // if we change this to get an array from the internet we should do a
