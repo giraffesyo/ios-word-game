@@ -25,20 +25,29 @@ class ViewController: UIViewController {
         strikeTwo.isHidden = true
         strikeThree.isHidden = true
     }
-
+    
     @IBOutlet var BoxesStackView: UIStackView!
     // Called whenever the lever is pressed, starting off the process of randomly getting a point value, and then choosing a letter
     @IBAction func leverPressed(_ sender: UIButton) {
         emptyBoxes()
         let selectedPointValue = points.randomElement()!
-        pointsDisplay.text =  String(selectedPointValue)
+        let timer1 = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: {timer in
+            self.pointsDisplay.text =  String(self.points.randomElement()!)
+            
+        })
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { _ in
+            timer1.invalidate()
+            
+            self.pointsDisplay.text = String(selectedPointValue)
+            })
+        print(selectedPointValue)
         // if we change this to get an array from the internet we should do a
         // real nil check here
         //Chose a random word from the array of words
         chosenWord = words.randomElement()!
         // Add boxes with letters (initially hidden letters) to the
         // user interface
-
+        
         for letter in chosenWord {
             // Create a box instance for every letter of the word
             let box: LetterBox = LetterBox(letter: letter)
@@ -67,7 +76,7 @@ class ViewController: UIViewController {
         let letterTapped: Character = Character(sender.name!)
         
         revealLetters(letter: letterTapped)
-        }
+    }
     
     func revealLetters(letter: Character) {
         var i: Int = 0
@@ -82,6 +91,7 @@ class ViewController: UIViewController {
         
     }
     
+    
     //Remove all boxes, if they exist.
     private func emptyBoxes() {
         if self.boxes.count != 0 {
@@ -93,8 +103,8 @@ class ViewController: UIViewController {
             boxes = []
         }
     }
-
+    
     
     //create function to check if keyboard entry matches any of the puzzle pieces
-
+    
 }

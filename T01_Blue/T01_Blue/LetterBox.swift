@@ -17,7 +17,6 @@ class LetterBox: NSObject {
     }
     
     public func reveal() {
-        print(String(self.LETTER) + " was revealed")
         let letter = String(self.LETTER).uppercased()
         self.IMAGEVIEW.image = LETTERIMAGES[Int(UnicodeScalar(letter)!.value) - 65]
     }
