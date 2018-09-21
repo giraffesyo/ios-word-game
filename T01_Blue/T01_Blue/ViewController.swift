@@ -5,17 +5,22 @@ import UIKit
 
 class ViewController: UIViewController {
     // Outlets
-    @IBOutlet weak var scoreDisplay: UILabel! //score above the puzzle
-    @IBOutlet weak var strikeOne: UILabel! //first X
-    @IBOutlet weak var strikeTwo: UILabel! //second X
-    @IBOutlet weak var strikeThree: UILabel! //third X
-    @IBOutlet weak var pointsDisplay: UILabel! //points in the selector box
+    @IBOutlet var scoreDisplay: UILabel! //score above the puzzle
+    @IBOutlet var strikeOne: UILabel! //first X
+    @IBOutlet var strikeTwo: UILabel! //second X
+    @IBOutlet var strikeThree: UILabel! //third X
+    @IBOutlet var pointsDisplay: UILabel! //points in the selector box
+    @IBOutlet var RevealsRemainingLabel: UILabel!
+    @IBOutlet var solveButton: UIButton!
+    @IBOutlet var leverButton: UIButton!
+    @IBOutlet var BoxesStackView: UIStackView!
     
     //class variables
     let points:[Int] = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 40, 40, 40, 50, 50, 50, 100, 100, 250, 500]
     let words: [String] = ["Banana","Busy","Laptop"]
     var chosenWord: String = ""
     var boxes: [LetterBox] = []
+    var revealsRemaining: Int = 0
     
     
     override func viewDidLoad() {
@@ -26,11 +31,19 @@ class ViewController: UIViewController {
         strikeThree.isHidden = true
     }
     
-    @IBOutlet var BoxesStackView: UIStackView!
     // Called whenever the lever is pressed, starting off the process of randomly getting a point value, and then choosing a letter
     @IBAction func leverPressed(_ sender: UIButton) {
+        //clear out all boxes
         emptyBoxes()
+        //give them two reveals
+        revealsRemaining = 2
+        
+        //hide lever when it's pulled, instead put a gray solve button
+        leverButton.isHidden = true
+        solveButton.isHidden = false
+        //get a random value that will be awarded if they get it right
         let selectedPointValue = points.randomElement()!
+        //animate the value changing a bunch
         let timer1 = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: {timer in
             self.pointsDisplay.text =  String(self.points.randomElement()!)
             
@@ -39,8 +52,7 @@ class ViewController: UIViewController {
             timer1.invalidate()
             
             self.pointsDisplay.text = String(selectedPointValue)
-            })
-        print(selectedPointValue)
+        })
         // if we change this to get an array from the internet we should do a
         // real nil check here
         //Chose a random word from the array of words
@@ -74,17 +86,18 @@ class ViewController: UIViewController {
     @objc func tapBoxHandler(sender: UITapGestureRecognizer){
         //The letter is stored in sender.name
         let letterTapped: Character = Character(sender.name!)
-        
-        revealLetters(letter: letterTapped)
+        if revealsRemaining > 0{
+            revealLetters(letter: letterTapped)
+            self.revealsRemaining = self.revealsRemaining - 1
+            self.RevealsRemainingLabel.text = "Reveals Remaining: " + String(self.revealsRemaining)
+        }
     }
     
     func revealLetters(letter: Character) {
         var i: Int = 0
         repeat {
             if boxes[i].LETTER == letter{
-                print(boxes[i].LETTER)
                 boxes[i].reveal()
-                
             }
             i = i + 1
         }while i < boxes.count

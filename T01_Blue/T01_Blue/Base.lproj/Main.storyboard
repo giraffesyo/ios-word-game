@@ -120,14 +120,32 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reveals Remaining: 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCN-5X-BtM">
+                                <rect key="frame" x="34" y="149" width="363" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pva-JV-I3Z">
+                                <rect key="frame" x="154" y="613" width="97" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="41"/>
+                                <state key="normal" title="Solve">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="BoxesStackView" destination="LgP-wn-6ZU" id="uLE-Go-qfh"/>
+                        <outlet property="RevealsRemainingLabel" destination="CCN-5X-BtM" id="Uuh-dD-rMc"/>
+                        <outlet property="leverButton" destination="JbQ-45-ABw" id="n5d-NW-1jc"/>
                         <outlet property="pointsDisplay" destination="sKa-HZ-2jt" id="szB-Yt-LQE"/>
                         <outlet property="scoreDisplay" destination="nxR-sN-LFS" id="Cif-KB-yqE"/>
+                        <outlet property="solveButton" destination="pva-JV-I3Z" id="OpU-pW-H5A"/>
                         <outlet property="strikeOne" destination="dRT-DX-5Ab" id="s7I-FM-Whh"/>
                         <outlet property="strikeThree" destination="ydM-Lp-anq" id="iGu-dm-SH0"/>
                         <outlet property="strikeTwo" destination="T6w-bn-do2" id="YYj-UX-i4j"/>
