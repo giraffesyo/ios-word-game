@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     var chosenWord: String = ""
     var boxes: [LetterBox] = []
     var revealsRemaining: Int = 0
+    var currentPointValue: Int = 0
     
     
     override func viewDidLoad() {
@@ -42,16 +43,15 @@ class ViewController: UIViewController {
         leverButton.isHidden = true
         solveButton.isHidden = false
         //get a random value that will be awarded if they get it right
-        let selectedPointValue = points.randomElement()!
+        currentPointValue = points.randomElement()!
         //animate the value changing a bunch
         let timer1 = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: {timer in
             self.pointsDisplay.text =  String(self.points.randomElement()!)
-            
         })
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { _ in
             timer1.invalidate()
-            
-            self.pointsDisplay.text = String(selectedPointValue)
+            // set point display to the real point value
+            self.updatePointDisplay()
         })
         // if we change this to get an array from the internet we should do a
         // real nil check here
@@ -90,6 +90,7 @@ class ViewController: UIViewController {
             revealLetters(letter: letterTapped)
             self.revealsRemaining = self.revealsRemaining - 1
             self.RevealsRemainingLabel.text = "Reveals Remaining: " + String(self.revealsRemaining)
+            self.updatePointDisplay()
         }
     }
     
@@ -104,6 +105,9 @@ class ViewController: UIViewController {
         
     }
     
+    private func updatePointDisplay() {
+        pointsDisplay.text = String(self.currentPointValue + self.currentPointValue * self.revealsRemaining)
+    }
     
     //Remove all boxes, if they exist.
     private func emptyBoxes() {
