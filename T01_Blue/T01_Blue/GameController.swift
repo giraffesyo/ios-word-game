@@ -23,6 +23,7 @@ class GameController : UIViewController, UITextFieldDelegate {
     var boxes: [LetterBox] = []
     var revealsRemaining: Int = 0
     var currentPointValue: Int = 0
+    var guessesReamining: Int = 0
     
     
     override func viewDidLoad() {
@@ -42,8 +43,9 @@ class GameController : UIViewController, UITextFieldDelegate {
     @IBAction func leverPressed(_ sender: UIButton) {
         //clear out all boxes
         emptyBoxes()
-        //give them two reveals
+        //give them two reveals and 3 guesses
         revealsRemaining = 2
+        guessesReamining = 3
         
         //hide lever when it's pulled, instead put a solve button
         leverButton.isHidden = true
@@ -110,6 +112,12 @@ class GameController : UIViewController, UITextFieldDelegate {
         
     }
     
+    func revealAll() {
+        for box in boxes {
+            box.reveal()
+        }
+    }
+    
     private func updatePointDisplay() {
         pointsDisplay.text = String(self.currentPointValue + self.currentPointValue * self.revealsRemaining)
     }
@@ -132,4 +140,51 @@ class GameController : UIViewController, UITextFieldDelegate {
         return true
     }
     
+    
+    // Check if we got the right answer when the
+    // solve button is pressed
+    @IBAction func solveButtonPressed(_ sender: UIButton) {
+        //if solution is empty or nil do nothing
+        guard let solution = SolutionTextField.text, !solution.isEmpty else {
+            return
+        }
+        //else we will check the answer
+        if solution.lowercased() == self.chosenWord.lowercased() {
+            //the user is correct, award the points
+        } else {
+            //the user is wrong, take away one life
+            removeLife()
+        }
+    }
+    
+    func removeLife(){
+        self.guessesReamining = self.guessesReamining - 1
+        switch(self.guessesReamining){
+        case 2:
+            self.strikeOne.isHidden = false
+            break
+        case 1:
+            self.strikeTwo.isHidden = false
+            break
+        default:
+            self.strikeThree.isHidden = false
+            //we have no more lives
+            gameOver()
+            break
+        }
+        self.SolutionTextField.text = ""
+    }
+    //if we've lost all our lives this is called
+    func gameOver() {
+        //reveal the word
+        self.revealAll()
+        self.SolutionTextField.isHidden = true
+        self.solveButton.isHidden = true
+        // Change reveals remaining behind the scenes
+        // without updating its label
+        // this way they can't tap on the boxes anymore
+        // but the screen doesn't change its state
+        self.revealsRemaining = 0
+        
+    }
 }
