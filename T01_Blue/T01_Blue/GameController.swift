@@ -19,7 +19,7 @@ class GameController : UIViewController, UITextFieldDelegate {
     
     //class variables
     let points:[Int] = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 40, 40, 40, 50, 50, 50, 100, 100, 250, 500]
-    let words: [String] = ["Banana","Busy","Laptop"]
+    let words: [String] = ["Banana","Busy","Laptop", "Catdog", "Catnip", "Pizza", "Monster", "Energy", "Macbook", "iPhone", "Park", "Family", "Join", "About", "Visit", "Class", "Heater", "Mouse", "Debut", "Donkey", "Printer", "Glasses", "Bottle", "Hoodie", "Shoes", "Socks", "Pajamas", "Pillow", "Sleep", "Soccer", "github", "steam", "apple","swift","java", "android", "linux", "alarm", "paper", "string", "drink", "puzzle", "cable", "tires", "rotor", "motor", "machine", "kellogs", "general"]
     var chosenWord: String = ""
     var boxes: [LetterBox] = []
     var revealsRemaining: Int = 0
@@ -86,9 +86,11 @@ class GameController : UIViewController, UITextFieldDelegate {
         // real nil check here
         //Chose a random word from the array of words
         chosenWord = words.randomElement()!
+        // print the word in the debug console so we know what it is
+        print(chosenWord)
+        
         // Add boxes with letters (initially hidden letters) to the
         // user interface
-        
         for letter in chosenWord {
             // Create a box instance for every letter of the word
             let box: LetterBox = LetterBox(letter: letter)
@@ -173,6 +175,8 @@ class GameController : UIViewController, UITextFieldDelegate {
             let scoreToAward = currentPointValue + currentPointValue * revealsRemaining
             incrementScore(by: scoreToAward)
             transitionToLever()
+            //reset the solution text box
+            SolutionTextField.text = ""
         } else {
             //the user is wrong, take away one life
             removeLife()
@@ -239,6 +243,8 @@ class GameController : UIViewController, UITextFieldDelegate {
     
     //reset everything
     func newGame() {
+        //reset solutiontext box
+        SolutionTextField.text = ""
         //hide play again button
         PlayAgainButton.isHidden = true
         //unhide lever
