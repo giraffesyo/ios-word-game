@@ -45,6 +45,7 @@
 			children = (
 				4B076EDD2148A5560087E776 /* T01_Blue */,
 				4B076EDC2148A5560087E776 /* Products */,
+				5150F5432157910600AE9FAE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +71,13 @@
 				F897F1F421574A2C00E07859 /* T01_Blue-Bridging-Header.h */,
 			);
 			path = T01_Blue;
+			sourceTree = "<group>";
+		};
+		5150F5432157910600AE9FAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -105,6 +113,11 @@
 					4B076EDA2148A5560087E776 = {
 						CreatedOnToolsVersion = 10.0;
 						LastSwiftMigration = 1000;
+						SystemCapabilities = {
+							com.apple.GameCenter.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -297,11 +310,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R4VGXX56KF;
 				INFOPLIST_FILE = T01_Blue/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "sherija.T01-Blue";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.okstate.WordTap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "T01_Blue/T01_Blue-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -318,11 +332,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R4VGXX56KF;
 				INFOPLIST_FILE = T01_Blue/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "sherija.T01-Blue";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.okstate.WordTap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "T01_Blue/T01_Blue-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
