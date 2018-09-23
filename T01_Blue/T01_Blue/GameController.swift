@@ -35,6 +35,7 @@ class GameController : UIViewController, UITextFieldDelegate {
         leverButton.isHidden = false
         solveButton.isHidden = true
         SolutionTextField.isHidden = true
+        SolutionTextField.delegate = self
     }
     
     // Called whenever the lever is pressed, starting off the process of randomly getting a point value, and then choosing a letter
@@ -123,6 +124,12 @@ class GameController : UIViewController, UITextFieldDelegate {
             
             boxes = []
         }
+    }
+    
+    //hide the keyboard when they press return
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        SolutionTextField.resignFirstResponder()
+        return true
     }
     
 }

@@ -200,12 +200,12 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter solution here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xEN-aa-XOb">
-                                <rect key="frame" x="108" y="575" width="189" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cwx-oE-UXT">
+                                <rect key="frame" x="92" y="569" width="231" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.24705882352941178" green="0.5607843137254902" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -214,7 +214,7 @@
                     <connections>
                         <outlet property="BoxesStackView" destination="LgP-wn-6ZU" id="uLE-Go-qfh"/>
                         <outlet property="RevealsRemainingLabel" destination="CCN-5X-BtM" id="Uuh-dD-rMc"/>
-                        <outlet property="SolutionTextField" destination="xEN-aa-XOb" id="a6R-en-0LZ"/>
+                        <outlet property="SolutionTextField" destination="cwx-oE-UXT" id="Y1I-8M-taY"/>
                         <outlet property="leverButton" destination="JbQ-45-ABw" id="n5d-NW-1jc"/>
                         <outlet property="pointsDisplay" destination="sKa-HZ-2jt" id="szB-Yt-LQE"/>
                         <outlet property="scoreDisplay" destination="nxR-sN-LFS" id="Cif-KB-yqE"/>
@@ -226,7 +226,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="93" y="26"/>
+            <point key="canvasLocation" x="92.753623188405811" y="25.271739130434785"/>
         </scene>
     </scenes>
     <resources>
