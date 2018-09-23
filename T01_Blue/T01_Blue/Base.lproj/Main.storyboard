@@ -13,7 +13,6 @@
         <!--splashscreen-->
         <scene sceneID="IQg-oY-P1V">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TRS-4L-Os3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="splashscreen" id="NNI-fU-UYo" customClass="SplashScreen" customModule="T01_Blue" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pG7-Xe-WQz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
@@ -71,13 +70,14 @@
                         <segue destination="BYZ-38-t0r" kind="show" identifier="startGame" animates="NO" id="zG6-xy-8o8"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TRS-4L-Os3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-751" y="25"/>
         </scene>
-        <!--View Controller-->
+        <!--Game Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="T01_Blue" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="GameController" customModule="T01_Blue" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -237,7 +237,7 @@
         <image name="R" width="67" height="67"/>
         <image name="T" width="67" height="67"/>
         <image name="W" width="67" height="67"/>
-        <image name="btnStart" width="481" height="193"/>
+        <image name="btnStart" width="360.75" height="144.75"/>
         <image name="object_04_star" width="400" height="400"/>
         <image name="object_07_tank" width="400" height="400"/>
     </resources>

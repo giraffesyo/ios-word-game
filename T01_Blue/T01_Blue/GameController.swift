@@ -3,7 +3,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class GameController : UIViewController {
     // Outlets
     @IBOutlet var scoreDisplay: UILabel! //score above the puzzle
     @IBOutlet var strikeOne: UILabel! //first X
