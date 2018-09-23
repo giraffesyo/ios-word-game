@@ -20,6 +20,7 @@ class GameController : UIViewController, UITextFieldDelegate {
     //class variables
     let points:[Int] = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 40, 40, 40, 50, 50, 50, 100, 100, 250, 500]
     let words: [String] = ["Banana","Busy","Laptop", "Catdog", "Catnip", "Pizza", "Monster", "Energy", "Macbook", "iPhone", "Park", "Family", "Join", "About", "Visit", "Class", "Heater", "Mouse", "Debut", "Donkey", "Printer", "Glasses", "Bottle", "Hoodie", "Shoes", "Socks", "Pajamas", "Pillow", "Sleep", "Soccer", "github", "steam", "apple","swift","java", "android", "linux", "alarm", "paper", "string", "drink", "puzzle", "cable", "tires", "rotor", "motor", "machine", "kellogs", "general"]
+    var animatedLever: UIImage = #imageLiteral(resourceName: "frame_00_delay-2s")
     var chosenWord: String = ""
     var boxes: [LetterBox] = []
     var revealsRemaining: Int = 0
@@ -28,9 +29,12 @@ class GameController : UIViewController, UITextFieldDelegate {
     var score = 0
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         
         SolutionTextField.delegate = self
         self.newGame()
@@ -58,8 +62,6 @@ class GameController : UIViewController, UITextFieldDelegate {
     @IBAction func leverPressed(_ sender: UIButton) {
         //clear out all boxes
         emptyBoxes()
-        
-        
         //give them two reveals and 3 guesses
         setRevealsRemaining(amount: 2)
         resetStrikes()
@@ -67,10 +69,28 @@ class GameController : UIViewController, UITextFieldDelegate {
         //show the reveals remaining label
         RevealsRemainingLabel.isHidden = false
         
-        //hide lever when it's pulled, instead put a solve button
-        leverButton.isHidden = true
-        solveButton.isHidden = false
-        SolutionTextField.isHidden = false
+        //create array of images to animate
+        let LeverImages = [#imageLiteral(resourceName: "frame_00_delay-2s"),#imageLiteral(resourceName: "frame_01_delay-0.05s"),#imageLiteral(resourceName: "frame_02_delay-0.04s"),#imageLiteral(resourceName: "frame_03_delay-0.03s"),#imageLiteral(resourceName: "frame_04_delay-0.02s"),#imageLiteral(resourceName: "frame_05_delay-0.02s"),#imageLiteral(resourceName: "frame_06_delay-0.02s"),#imageLiteral(resourceName: "frame_07_delay-0.02s"),#imageLiteral(resourceName: "frame_08_delay-0.02s")]
+        if let leverImageView = leverButton.imageView {
+            leverImageView.animationImages = LeverImages
+            leverImageView.animationDuration = 1
+            leverImageView.animationRepeatCount = 0
+            leverImageView.startAnimating()
+        } else {
+            //couldnt unwrap we'll just proceed with text
+            leverButton.titleLabel!.text = "Pull this!"
+        }
+        animatedLever = UIImage.animatedImage(with: LeverImages, duration: 1)!
+        //start the animation
+        
+        //hide lever 1 second after it's pulled, instead put a solve button
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: {timer in
+            self.leverButton.isHidden = true
+            self.solveButton.isHidden = false
+            self.SolutionTextField.isHidden = false
+            self.leverButton.imageView?.stopAnimating()
+            timer.invalidate()
+        })
         //get a random value that will be awarded if they get it right
         currentPointValue = points.randomElement()!
         //animate the value changing a bunch
