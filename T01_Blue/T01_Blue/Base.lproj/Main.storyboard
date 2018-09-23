@@ -57,7 +57,7 @@
                                 <rect key="frame" x="119" y="421" width="176" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Button" image="btnStart"/>
+                                <state key="normal" image="btnStart"/>
                                 <connections>
                                     <action selector="startButton:" destination="NNI-fU-UYo" eventType="touchUpInside" id="KfJ-dj-p1k"/>
                                 </connections>
@@ -240,7 +240,7 @@
         <image name="R" width="67" height="67"/>
         <image name="T" width="67" height="67"/>
         <image name="W" width="67" height="67"/>
-        <image name="btnStart" width="360.75" height="144.75"/>
+        <image name="btnStart" width="130" height="48"/>
         <image name="object_04_star" width="400" height="400"/>
         <image name="object_07_tank" width="400" height="400"/>
     </resources>
