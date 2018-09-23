@@ -15,6 +15,7 @@ class GameController : UIViewController, UITextFieldDelegate {
     @IBOutlet var leverButton: UIButton!
     @IBOutlet var BoxesStackView: UIStackView!
     @IBOutlet var SolutionTextField: UITextField!
+    @IBOutlet var PlayAgainButton: UIButton!
     
     //class variables
     let points:[Int] = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 40, 40, 40, 50, 50, 50, 100, 100, 250, 500]
@@ -24,19 +25,33 @@ class GameController : UIViewController, UITextFieldDelegate {
     var revealsRemaining: Int = 0
     var currentPointValue: Int = 0
     var guessesReamining: Int = 0
+    var score = 0
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Hide elements that shouldn't be on screen at first
-        strikeOne.isHidden = true
-        strikeTwo.isHidden = true
-        strikeThree.isHidden = true
-        leverButton.isHidden = false
-        solveButton.isHidden = true
-        SolutionTextField.isHidden = true
+        
         SolutionTextField.delegate = self
+        self.newGame()
+    }
+    
+    func setRevealsRemaining(amount: Int) {
+        self.revealsRemaining = amount
+        self.RevealsRemainingLabel.text = "Reveals Remaining: \(self.revealsRemaining)"
+    }
+    
+    func decrementRevealsReamining() {
+        self.setRevealsRemaining(amount: 1)
+    }
+    
+    func setScore(amount: Int) {
+        self.score = amount
+        self.scoreDisplay.text = "Score: \(self.score)"
+    }
+    
+    func incrementScore(by: Int) {
+        setScore(amount: self.score + by)
     }
     
     // Called whenever the lever is pressed, starting off the process of randomly getting a point value, and then choosing a letter
@@ -44,7 +59,7 @@ class GameController : UIViewController, UITextFieldDelegate {
         //clear out all boxes
         emptyBoxes()
         //give them two reveals and 3 guesses
-        revealsRemaining = 2
+        setRevealsRemaining(amount: 2)
         guessesReamining = 3
         
         //hide lever when it's pulled, instead put a solve button
@@ -95,8 +110,7 @@ class GameController : UIViewController, UITextFieldDelegate {
         let letterTapped: Character = Character(sender.name!)
         if revealsRemaining > 0{
             revealLetters(letter: letterTapped)
-            self.revealsRemaining = self.revealsRemaining - 1
-            self.RevealsRemainingLabel.text = "Reveals Remaining: " + String(self.revealsRemaining)
+           self.decrementRevealsReamining()
             self.updatePointDisplay()
         }
     }
@@ -185,6 +199,33 @@ class GameController : UIViewController, UITextFieldDelegate {
         // this way they can't tap on the boxes anymore
         // but the screen doesn't change its state
         self.revealsRemaining = 0
+        self.PlayAgainButton.isHidden = false
         
+    }
+    @IBAction func PlayAgainButtonPressed(_ sender: UIButton) {
+        //start a new game
+        newGame()
+        
+    }
+    
+    //reset everything
+    func newGame() {
+        //hide play again button
+        PlayAgainButton.isHidden = true
+        //unhide lever
+        leverButton.isHidden = false
+        // reset score and reveals remaining
+        setRevealsRemaining(amount: 2)
+        setScore(amount: 0)
+        //hide strikes
+        strikeOne.isHidden = true
+        strikeTwo.isHidden = true
+        strikeThree.isHidden = true
+        //hide solve button
+        solveButton.isHidden = true
+        //hide solution text field
+        SolutionTextField.isHidden = true
+        //remove all the boxes
+        emptyBoxes()
     }
 }
