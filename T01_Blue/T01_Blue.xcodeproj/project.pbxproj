@@ -8,20 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		4B076EDF2148A5560087E776 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B076EDE2148A5560087E776 /* AppDelegate.swift */; };
-		4B076EE12148A5560087E776 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B076EE02148A5560087E776 /* ViewController.swift */; };
+		4B076EE12148A5560087E776 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B076EE02148A5560087E776 /* GameController.swift */; };
 		4B076EE42148A5560087E776 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B076EE22148A5560087E776 /* Main.storyboard */; };
 		4B076EE62148A55E0087E776 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B076EE52148A55E0087E776 /* Assets.xcassets */; };
 		4B076EE92148A55E0087E776 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B076EE72148A55E0087E776 /* LaunchScreen.storyboard */; };
+		51F31C1721547398009D3140 /* LetterBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F31C1621547398009D3140 /* LetterBox.swift */; };
+		F897F1FE21574E7C00E07859 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897F1FD21574E7C00E07859 /* SplashScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4B076EDB2148A5560087E776 /* T01_Blue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = T01_Blue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B076EDE2148A5560087E776 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4B076EE02148A5560087E776 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4B076EE02148A5560087E776 /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		4B076EE32148A5560087E776 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B076EE52148A55E0087E776 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B076EE82148A55E0087E776 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B076EEA2148A55E0087E776 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51F31C1621547398009D3140 /* LetterBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterBox.swift; sourceTree = "<group>"; };
+		F897F1F421574A2C00E07859 /* T01_Blue-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "T01_Blue-Bridging-Header.h"; sourceTree = "<group>"; };
+		F897F1FD21574E7C00E07859 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,12 +59,15 @@
 		4B076EDD2148A5560087E776 /* T01_Blue */ = {
 			isa = PBXGroup;
 			children = (
+				F897F1FD21574E7C00E07859 /* SplashScreen.swift */,
 				4B076EDE2148A5560087E776 /* AppDelegate.swift */,
-				4B076EE02148A5560087E776 /* ViewController.swift */,
+				4B076EE02148A5560087E776 /* GameController.swift */,
 				4B076EE22148A5560087E776 /* Main.storyboard */,
 				4B076EE52148A55E0087E776 /* Assets.xcassets */,
 				4B076EE72148A55E0087E776 /* LaunchScreen.storyboard */,
 				4B076EEA2148A55E0087E776 /* Info.plist */,
+				51F31C1621547398009D3140 /* LetterBox.swift */,
+				F897F1F421574A2C00E07859 /* T01_Blue-Bridging-Header.h */,
 			);
 			path = T01_Blue;
 			sourceTree = "<group>";
@@ -92,10 +100,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
-				ORGANIZATIONNAME = "Josh Sheridan";
+				ORGANIZATIONNAME = "Team Blue";
 				TargetAttributes = {
 					4B076EDA2148A5560087E776 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -135,8 +144,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B076EE12148A5560087E776 /* ViewController.swift in Sources */,
+				F897F1FE21574E7C00E07859 /* SplashScreen.swift in Sources */,
+				4B076EE12148A5560087E776 /* GameController.swift in Sources */,
 				4B076EDF2148A5560087E776 /* AppDelegate.swift in Sources */,
+				51F31C1721547398009D3140 /* LetterBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,7 +224,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -268,7 +279,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -282,6 +293,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R4VGXX56KF;
 				INFOPLIST_FILE = T01_Blue/Info.plist;
@@ -291,6 +303,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sherija.T01-Blue";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "T01_Blue/T01_Blue-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -300,6 +314,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R4VGXX56KF;
 				INFOPLIST_FILE = T01_Blue/Info.plist;
@@ -309,6 +324,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sherija.T01-Blue";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "T01_Blue/T01_Blue-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
