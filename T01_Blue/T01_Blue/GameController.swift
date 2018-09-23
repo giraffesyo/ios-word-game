@@ -42,7 +42,7 @@ class GameController : UIViewController, UITextFieldDelegate {
     }
     
     func decrementRevealsReamining() {
-        self.setRevealsRemaining(amount: 1)
+        self.setRevealsRemaining(amount: self.revealsRemaining - 1)
     }
     
     func setScore(amount: Int) {
@@ -58,9 +58,14 @@ class GameController : UIViewController, UITextFieldDelegate {
     @IBAction func leverPressed(_ sender: UIButton) {
         //clear out all boxes
         emptyBoxes()
+        
+        
         //give them two reveals and 3 guesses
         setRevealsRemaining(amount: 2)
-        guessesReamining = 3
+        resetStrikes()
+        
+        //show the reveals remaining label
+        RevealsRemainingLabel.isHidden = false
         
         //hide lever when it's pulled, instead put a solve button
         leverButton.isHidden = true
@@ -110,7 +115,7 @@ class GameController : UIViewController, UITextFieldDelegate {
         let letterTapped: Character = Character(sender.name!)
         if revealsRemaining > 0{
             revealLetters(letter: letterTapped)
-           self.decrementRevealsReamining()
+            self.decrementRevealsReamining()
             self.updatePointDisplay()
         }
     }
@@ -165,10 +170,34 @@ class GameController : UIViewController, UITextFieldDelegate {
         //else we will check the answer
         if solution.lowercased() == self.chosenWord.lowercased() {
             //the user is correct, award the points
+            let scoreToAward = currentPointValue + currentPointValue * revealsRemaining
+            incrementScore(by: scoreToAward)
+            transitionToLever()
         } else {
             //the user is wrong, take away one life
             removeLife()
         }
+    }
+    
+    func transitionToLever() {
+        //hide solve stuff
+        self.SolutionTextField.isHidden = true
+        self.solveButton.isHidden = true
+        //show the lever
+        self.leverButton.isHidden = false
+        //reset strikes to hidden
+        self.resetStrikes()
+        //hide reveals remaining label
+        self.RevealsRemainingLabel.isHidden = true
+        //reveal the boxes
+        self.revealAll()
+    }
+    
+    func resetStrikes() {
+        self.guessesReamining = 3
+        strikeOne.isHidden = true
+        strikeTwo.isHidden = true
+        strikeThree.isHidden = true
     }
     
     func removeLife(){
@@ -218,9 +247,7 @@ class GameController : UIViewController, UITextFieldDelegate {
         setRevealsRemaining(amount: 2)
         setScore(amount: 0)
         //hide strikes
-        strikeOne.isHidden = true
-        strikeTwo.isHidden = true
-        strikeThree.isHidden = true
+        resetStrikes()
         //hide solve button
         solveButton.isHidden = true
         //hide solution text field
