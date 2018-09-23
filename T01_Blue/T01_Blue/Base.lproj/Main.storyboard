@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -135,6 +136,13 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter solution here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xEN-aa-XOb">
+                                <rect key="frame" x="108" y="575" width="189" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -142,6 +150,7 @@
                     <connections>
                         <outlet property="BoxesStackView" destination="LgP-wn-6ZU" id="uLE-Go-qfh"/>
                         <outlet property="RevealsRemainingLabel" destination="CCN-5X-BtM" id="Uuh-dD-rMc"/>
+                        <outlet property="SolutionTextField" destination="xEN-aa-XOb" id="a6R-en-0LZ"/>
                         <outlet property="leverButton" destination="JbQ-45-ABw" id="n5d-NW-1jc"/>
                         <outlet property="pointsDisplay" destination="sKa-HZ-2jt" id="szB-Yt-LQE"/>
                         <outlet property="scoreDisplay" destination="nxR-sN-LFS" id="Cif-KB-yqE"/>

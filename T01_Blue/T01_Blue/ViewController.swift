@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet var solveButton: UIButton!
     @IBOutlet var leverButton: UIButton!
     @IBOutlet var BoxesStackView: UIStackView!
+    @IBOutlet var SolutionTextField: UITextField!
     
     //class variables
     let points:[Int] = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 40, 40, 40, 50, 50, 50, 100, 100, 250, 500]
@@ -27,9 +28,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Hide elements that shouldn't be on screen at first
         strikeOne.isHidden = true
         strikeTwo.isHidden = true
         strikeThree.isHidden = true
+        leverButton.isHidden = false
+        solveButton.isHidden = true
+        SolutionTextField.isHidden = true
     }
     
     // Called whenever the lever is pressed, starting off the process of randomly getting a point value, and then choosing a letter
@@ -39,9 +44,10 @@ class ViewController: UIViewController {
         //give them two reveals
         revealsRemaining = 2
         
-        //hide lever when it's pulled, instead put a gray solve button
+        //hide lever when it's pulled, instead put a solve button
         leverButton.isHidden = true
         solveButton.isHidden = false
+        SolutionTextField.isHidden = false
         //get a random value that will be awarded if they get it right
         currentPointValue = points.randomElement()!
         //animate the value changing a bunch
@@ -78,8 +84,6 @@ class ViewController: UIViewController {
             BoxesStackView.addArrangedSubview(box.IMAGEVIEW)
             
         }
-        
-        //figure out how to have keyboard pop up for user entry. Store user entered letter
     }
     
     //Handle taps in the boxes
@@ -120,8 +124,5 @@ class ViewController: UIViewController {
             boxes = []
         }
     }
-    
-    
-    //create function to check if keyboard entry matches any of the puzzle pieces
     
 }
