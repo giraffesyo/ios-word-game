@@ -42,7 +42,20 @@ class GameController : UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let path = Bundle.main.path(forResource: "wheelsound.wav", ofType: "wav")
+        guard let audioSourceURL = Bundle.main.url(forResource: "wheelsound2", withExtension: "wav")
+            else {
+                print("can not find audio")
+                return
+        }
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: audioSourceURL)
+            
+            //buffer the audio so that it wont pause
+            audioPlayer.prepareToPlay()
+        } catch {
+            print("no audio")
+            print("error")
+        }
 
         
         SolutionTextField.delegate = self
@@ -96,6 +109,9 @@ class GameController : UIViewController, UITextFieldDelegate {
             leverImageView.animationDuration = 1
             leverImageView.animationRepeatCount = 0
             leverImageView.startAnimating()
+            self.audioPlayer.play()
+    
+            
         } else {
             //couldnt unwrap we'll just proceed with text
             leverButton.titleLabel!.text = "Pull this!"
@@ -115,6 +131,8 @@ class GameController : UIViewController, UITextFieldDelegate {
             self.solveButton.isHidden = false
             self.SolutionTextField.isHidden = false
             self.leverButton.imageView?.stopAnimating()
+            
+            
             //invalidate wheel animation timer (changing numbers animation)
             wheelTimer.invalidate()
             //invalidate myself
