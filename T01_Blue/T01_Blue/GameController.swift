@@ -16,10 +16,12 @@ class GameController : UIViewController, UITextFieldDelegate {
     @IBOutlet var BoxesStackView: UIStackView!
     @IBOutlet var SolutionTextField: UITextField!
     @IBOutlet var PlayAgainButton: UIButton!
-    
+    @IBOutlet weak var Hint: UILabel!
+
     //class variables
     let points:[Int] = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 40, 40, 40, 50, 50, 50, 100, 100, 250, 500]
-    let words: [String] = ["Banana","Busy","Laptop", "Catdog", "Catnip", "Pizza", "Monster", "Energy", "Macbook", "iPhone", "Park", "Family", "Join", "About", "Visit", "Class", "Heater", "Mouse", "Debut", "Donkey", "Printer", "Glasses", "Bottle", "Hoodie", "Shoes", "Socks", "Pajamas", "Pillow", "Sleep", "Soccer", "github", "steam", "apple","swift","java", "android", "linux", "alarm", "paper", "string", "drink", "puzzle", "cable", "tires", "rotor", "motor", "machine", "kellogs", "general"]
+    let words: [String] = ["Banana", "Busy", "Laptop", "Catdog", "Catnip", "Pizza", "Monster", "Energy", "Macbook", "iPhone", "Park", "Family", "Join", "About", "Visit", "Class", "Heater", "Mouse", "Debut", "Donkey", "Printer", "Glass", "Bottle", "Hoodie", "Shoes", "Socks", "Pajamas", "Pillow", "Sleep", "Soccer", "github", "steam", "apple", "swift", "java", "android", "linux", "alarm", "paper", "string", "drink", "puzzle", "cable", "tires", "rotor", "motor", "machine", "kellogs", "general"]
+    let hints: [String] = ["Fruit", "Workload", "Portable technology", "Animated cartoon show", "Herb", "Food", "Scary", "RedBull", "Computer", "Phone", "Play", "Joint or nuclear", "Connection", "Near", "Meet", "School", "Hot", "Computer Hardware", "Launch", "Animal", "Hard Copy", "Fragile", "Water", "Clothes", "Footwear", "Footwear", "Clothes", "Bed", "Bed", "Game", "Software development platform", "Hot", "Fruit", "Language", "Language", "Phone", "Operating system", "Wake-up", "Pen-pencil", "Sentences", "Water", "Game", "Wire", "Car", "Palindrome", "Machine", "Saves time", "Breakfast", "Common"]
     var animatedLever: UIImage = #imageLiteral(resourceName: "frame_00_delay-2s")
     var chosenWord: String = ""
     var boxes: [LetterBox] = []
@@ -27,15 +29,13 @@ class GameController : UIViewController, UITextFieldDelegate {
     var currentPointValue: Int = 0
     var guessesReamining: Int = 0
     var score = 0
+    var index = 0
     
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        
         SolutionTextField.delegate = self
         self.newGame()
     }
@@ -47,6 +47,7 @@ class GameController : UIViewController, UITextFieldDelegate {
     
     func decrementRevealsReamining() {
         self.setRevealsRemaining(amount: self.revealsRemaining - 1)
+        self.showHint(amount: self.revealsRemaining, index: index)
     }
     
     func setScore(amount: Int) {
@@ -56,6 +57,18 @@ class GameController : UIViewController, UITextFieldDelegate {
     
     func incrementScore(by: Int) {
         setScore(amount: self.score + by)
+    }
+    
+    func showHint(amount: Int, index: Int){
+        print("func showHint() 1")
+        if amount < 2
+        {
+            self.Hint.isHidden = false
+            self.Hint.text = "Hint: \(hints[index])"
+            print ("Hint.text: \(Hint.text!)")
+        }
+        print("func showHint() 2")
+
     }
     
     // Called whenever the lever is pressed, starting off the process of randomly getting a point value, and then choosing a letter
@@ -105,7 +118,11 @@ class GameController : UIViewController, UITextFieldDelegate {
         // if we change this to get an array from the internet we should do a
         // real nil check here
         //Chose a random word from the array of words
+        
         chosenWord = words.randomElement()!
+        index = words.index(of: chosenWord)!
+        //showHint(amount: 2, index: index)
+       
         // print the word in the debug console so we know what it is
         print(chosenWord)
         
@@ -138,6 +155,9 @@ class GameController : UIViewController, UITextFieldDelegate {
         if revealsRemaining > 0{
             revealLetters(letter: letterTapped)
             self.decrementRevealsReamining()
+            //self.showHint(amount: 2, index: index)
+            print ("showHint() done")
+
             self.updatePointDisplay()
         }
     }
@@ -207,6 +227,7 @@ class GameController : UIViewController, UITextFieldDelegate {
         //hide solve stuff
         self.SolutionTextField.isHidden = true
         self.solveButton.isHidden = true
+        self.Hint.isHidden = true
         //show the lever
         self.leverButton.isHidden = false
         //reset strikes to hidden
@@ -269,6 +290,8 @@ class GameController : UIViewController, UITextFieldDelegate {
         PlayAgainButton.isHidden = true
         //unhide lever
         leverButton.isHidden = false
+        //hide hint
+        Hint.isHidden = true
         // reset score and reveals remaining
         setRevealsRemaining(amount: 2)
         setScore(amount: 0)
