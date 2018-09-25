@@ -1,4 +1,4 @@
-# Team Blue Assingment 1
+# Team Blue Project 1
 
 Michael McQuade  
 Oscar Tapia  
