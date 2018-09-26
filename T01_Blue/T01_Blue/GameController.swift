@@ -20,7 +20,7 @@ class GameController : UIViewController, UITextFieldDelegate {
 
     //class variables
     let points:[Int] = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 40, 40, 40, 50, 50, 50, 100, 100, 250, 500]
-    let words: [String] = ["Banana", "Busy", "Laptop", "Catdog", "Catnip", "Pizza", "Monster", "Energy", "Macbook", "iPhone", "Park", "Family", "Join", "About", "Visit", "Class", "Heater", "Mouse", "Debut", "Donkey", "Printer", "Glass", "Bottle", "Hoodie", "Shoes", "Socks", "Pajamas", "Pillow", "Sleep", "Soccer", "github", "steam", "apple", "swift", "java", "android", "linux", "alarm", "paper", "string", "drink", "puzzle", "cable", "tires", "rotor", "motor", "machine", "kellogs", "general"]
+    let words: [String] = ["Banana", "Busy", "Laptop", "Catdog", "Catnip", "Pizza", "Monster", "Energy", "Macbook", "iPhone", "Park", "Family", "Join", "About", "Visit", "Class", "Heater", "Mouse", "Debut", "Donkey", "Printer", "Glass", "Bottle", "Hoodie", "Shoes", "Socks", "Pajamas", "Pillow", "Sleep", "Soccer", "github", "steam", "apple", "swift", "java", "android", "linux", "alarm", "paper", "string", "drink", "puzzle", "cable", "tires", "rotor", "motor", "machine", "pancake", "general"]
     let hints: [String] = ["Fruit", "Workload", "Portable technology", "Animated cartoon show", "Herb", "Food", "Scary", "RedBull", "Computer", "Phone", "Play", "Joint or nuclear", "Connection", "Near", "Meet", "School", "Hot", "Computer Hardware", "Launch", "Animal", "Hard Copy", "Fragile", "Water", "Clothes", "Footwear", "Footwear", "Clothes", "Bed", "Bed", "Game", "Software development platform", "Hot", "Fruit", "Language", "Language", "Phone", "Operating system", "Wake-up", "Pen-pencil", "Sentences", "Water", "Game", "Wire", "Car", "Palindrome", "Machine", "Saves time", "Breakfast", "Common"]
     var animatedLever: UIImage = #imageLiteral(resourceName: "frame_00_delay-2s")
     var chosenWord: String = ""
@@ -47,7 +47,6 @@ class GameController : UIViewController, UITextFieldDelegate {
     
     func decrementRevealsReamining() {
         self.setRevealsRemaining(amount: self.revealsRemaining - 1)
-        self.showHint(amount: self.revealsRemaining, index: index)
     }
     
     func setScore(amount: Int) {
@@ -59,16 +58,10 @@ class GameController : UIViewController, UITextFieldDelegate {
         setScore(amount: self.score + by)
     }
     
-    func showHint(amount: Int, index: Int){
-        print("func showHint() 1")
-        if amount < 2
-        {
-            self.Hint.isHidden = false
-            self.Hint.text = "Hint: \(hints[index])"
-            print ("Hint.text: \(Hint.text!)")
-        }
-        print("func showHint() 2")
-
+    func showHint(index: Int){
+        self.Hint.isHidden = false
+        self.Hint.text = "Hint: \(hints[index])"
+        print ("Hint.text: \(Hint.text!)")
     }
     
     // Called whenever the lever is pressed, starting off the process of randomly getting a point value, and then choosing a letter
@@ -121,7 +114,7 @@ class GameController : UIViewController, UITextFieldDelegate {
         
         chosenWord = words.randomElement()!
         index = words.index(of: chosenWord)!
-        //showHint(amount: 2, index: index)
+        showHint(index: index)
        
         // print the word in the debug console so we know what it is
         print(chosenWord)
