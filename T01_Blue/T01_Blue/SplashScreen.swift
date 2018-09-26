@@ -18,6 +18,7 @@ class SplashScreen: UIViewController {
     
     @IBAction func startButton(_ sender: UIButton) {
         performSegue(withIdentifier: "startGame", sender: self)
+        
     }
     
     /*

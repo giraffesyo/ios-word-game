@@ -2,6 +2,7 @@
 //  T01_Blue
 
 import UIKit
+import AVFoundation
 
 class GameController : UIViewController, UITextFieldDelegate {
     // Outlets
@@ -16,8 +17,13 @@ class GameController : UIViewController, UITextFieldDelegate {
     @IBOutlet var BoxesStackView: UIStackView!
     @IBOutlet var SolutionTextField: UITextField!
     @IBOutlet var PlayAgainButton: UIButton!
+<<<<<<< HEAD
     @IBOutlet weak var Hint: UILabel!
 
+=======
+>>>>>>> 3ac6121a5d37e274483d3eaaf9907c0d2ff16b83
+    var audioPlayer: AVAudioPlayer! //add audio player
+    
     //class variables
     let points:[Int] = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 40, 40, 40, 50, 50, 50, 100, 100, 250, 500]
     let words: [String] = ["Banana", "Busy", "Laptop", "Catdog", "Catnip", "Pizza", "Monster", "Energy", "Macbook", "iPhone", "Park", "Family", "Join", "About", "Visit", "Class", "Heater", "Mouse", "Debut", "Donkey", "Printer", "Glass", "Bottle", "Hoodie", "Shoes", "Socks", "Pajamas", "Pillow", "Sleep", "Soccer", "github", "steam", "apple", "swift", "java", "android", "linux", "alarm", "paper", "string", "drink", "puzzle", "cable", "tires", "rotor", "motor", "machine", "kellogs", "general"]
@@ -31,11 +37,33 @@ class GameController : UIViewController, UITextFieldDelegate {
     var score = 0
     var index = 0
     
+    //create array of images to animate the lever
+    let LeverImages = [#imageLiteral(resourceName: "frame_00_delay-2s"),#imageLiteral(resourceName: "frame_01_delay-0.05s"),#imageLiteral(resourceName: "frame_02_delay-0.04s"),#imageLiteral(resourceName: "frame_03_delay-0.03s"),#imageLiteral(resourceName: "frame_04_delay-0.02s"),#imageLiteral(resourceName: "frame_05_delay-0.02s"),#imageLiteral(resourceName: "frame_06_delay-0.02s"),#imageLiteral(resourceName: "frame_07_delay-0.02s"),#imageLiteral(resourceName: "frame_08_delay-0.02s")]
+    
+    //create array of images to animate the lever
+    let LeverImages = [#imageLiteral(resourceName: "frame_00_delay-2s"),#imageLiteral(resourceName: "frame_01_delay-0.05s"),#imageLiteral(resourceName: "frame_02_delay-0.04s"),#imageLiteral(resourceName: "frame_03_delay-0.03s"),#imageLiteral(resourceName: "frame_04_delay-0.02s"),#imageLiteral(resourceName: "frame_05_delay-0.02s"),#imageLiteral(resourceName: "frame_06_delay-0.02s"),#imageLiteral(resourceName: "frame_07_delay-0.02s"),#imageLiteral(resourceName: "frame_08_delay-0.02s")]
+    
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let audioSourceURL = Bundle.main.url(forResource: "wheelsound2", withExtension: "wav")
+            else {
+                print("can not find audio")
+                return
+        }
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: audioSourceURL)
+            
+            //buffer the audio so that it wont pause
+            audioPlayer.prepareToPlay()
+        } catch {
+            print("no audio")
+            print("error")
+        }
+
+        
         SolutionTextField.delegate = self
         self.newGame()
     }
@@ -82,13 +110,14 @@ class GameController : UIViewController, UITextFieldDelegate {
         //show the reveals remaining label
         RevealsRemainingLabel.isHidden = false
         
-        //create array of images to animate
-        let LeverImages = [#imageLiteral(resourceName: "frame_00_delay-2s"),#imageLiteral(resourceName: "frame_01_delay-0.05s"),#imageLiteral(resourceName: "frame_02_delay-0.04s"),#imageLiteral(resourceName: "frame_03_delay-0.03s"),#imageLiteral(resourceName: "frame_04_delay-0.02s"),#imageLiteral(resourceName: "frame_05_delay-0.02s"),#imageLiteral(resourceName: "frame_06_delay-0.02s"),#imageLiteral(resourceName: "frame_07_delay-0.02s"),#imageLiteral(resourceName: "frame_08_delay-0.02s")]
         if let leverImageView = leverButton.imageView {
             leverImageView.animationImages = LeverImages
             leverImageView.animationDuration = 1
             leverImageView.animationRepeatCount = 0
             leverImageView.startAnimating()
+            self.audioPlayer.play()
+    
+            
         } else {
             //couldnt unwrap we'll just proceed with text
             leverButton.titleLabel!.text = "Pull this!"
@@ -96,22 +125,24 @@ class GameController : UIViewController, UITextFieldDelegate {
         animatedLever = UIImage.animatedImage(with: LeverImages, duration: 1)!
         //start the animation
         
+        //get a random value that will be awarded if they get it right
+        currentPointValue = points.randomElement()!
+        //animate the value changing a bunch
+        let wheelTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: {timer in
+            self.pointsDisplay.text =  String(self.points.randomElement()!)
+        })
         //hide lever 1 second after it's pulled, instead put a solve button
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: {timer in
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { thistimer in
             self.leverButton.isHidden = true
             self.solveButton.isHidden = false
             self.SolutionTextField.isHidden = false
             self.leverButton.imageView?.stopAnimating()
-            timer.invalidate()
-        })
-        //get a random value that will be awarded if they get it right
-        currentPointValue = points.randomElement()!
-        //animate the value changing a bunch
-        let timer1 = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: {timer in
-            self.pointsDisplay.text =  String(self.points.randomElement()!)
-        })
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { _ in
-            timer1.invalidate()
+            
+            
+            //invalidate wheel animation timer (changing numbers animation)
+            wheelTimer.invalidate()
+            //invalidate myself
+            thistimer.invalidate()
             // set point display to the real point value
             self.updatePointDisplay()
         })
