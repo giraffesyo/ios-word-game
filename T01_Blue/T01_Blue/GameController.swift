@@ -17,11 +17,7 @@ class GameController : UIViewController, UITextFieldDelegate {
     @IBOutlet var BoxesStackView: UIStackView!
     @IBOutlet var SolutionTextField: UITextField!
     @IBOutlet var PlayAgainButton: UIButton!
-<<<<<<< HEAD
     @IBOutlet weak var Hint: UILabel!
-
-=======
->>>>>>> 3ac6121a5d37e274483d3eaaf9907c0d2ff16b83
     var audioPlayer: AVAudioPlayer! //add audio player
     
     //class variables
@@ -39,12 +35,6 @@ class GameController : UIViewController, UITextFieldDelegate {
     
     //create array of images to animate the lever
     let LeverImages = [#imageLiteral(resourceName: "frame_00_delay-2s"),#imageLiteral(resourceName: "frame_01_delay-0.05s"),#imageLiteral(resourceName: "frame_02_delay-0.04s"),#imageLiteral(resourceName: "frame_03_delay-0.03s"),#imageLiteral(resourceName: "frame_04_delay-0.02s"),#imageLiteral(resourceName: "frame_05_delay-0.02s"),#imageLiteral(resourceName: "frame_06_delay-0.02s"),#imageLiteral(resourceName: "frame_07_delay-0.02s"),#imageLiteral(resourceName: "frame_08_delay-0.02s")]
-    
-    //create array of images to animate the lever
-    let LeverImages = [#imageLiteral(resourceName: "frame_00_delay-2s"),#imageLiteral(resourceName: "frame_01_delay-0.05s"),#imageLiteral(resourceName: "frame_02_delay-0.04s"),#imageLiteral(resourceName: "frame_03_delay-0.03s"),#imageLiteral(resourceName: "frame_04_delay-0.02s"),#imageLiteral(resourceName: "frame_05_delay-0.02s"),#imageLiteral(resourceName: "frame_06_delay-0.02s"),#imageLiteral(resourceName: "frame_07_delay-0.02s"),#imageLiteral(resourceName: "frame_08_delay-0.02s")]
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,10 +114,19 @@ class GameController : UIViewController, UITextFieldDelegate {
         let wheelTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: {timer in
             self.pointsDisplay.text =  String(self.points.randomElement()!)
         })
+        
+        // if we change this to get an array from the internet we should do a
+        // real nil check here
+        //Chose a random word from the array of words
+        chosenWord = words.randomElement()!
+        // storing the index of the randomly chosen word in a variable
+        index = words.index(of: chosenWord)!
+
         //hide lever 1 second after it's pulled, instead put a solve button
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { thistimer in
             self.leverButton.isHidden = true
             self.solveButton.isHidden = false
+            self.showHint(index: self.index)
             self.SolutionTextField.isHidden = false
             self.leverButton.imageView?.stopAnimating()
             
@@ -139,14 +138,6 @@ class GameController : UIViewController, UITextFieldDelegate {
             // set point display to the real point value
             self.updatePointDisplay()
         })
-        // if we change this to get an array from the internet we should do a
-        // real nil check here
-        //Chose a random word from the array of words
-        
-        chosenWord = words.randomElement()!
-        index = words.index(of: chosenWord)!
-        showHint(index: index)
-       
         // print the word in the debug console so we know what it is
         print(chosenWord)
         
@@ -292,6 +283,7 @@ class GameController : UIViewController, UITextFieldDelegate {
         self.revealAll()
         self.SolutionTextField.isHidden = true
         self.solveButton.isHidden = true
+        self.Hint.isHidden = true
         // Change reveals remaining behind the scenes
         // without updating its label
         // this way they can't tap on the boxes anymore
@@ -310,6 +302,8 @@ class GameController : UIViewController, UITextFieldDelegate {
     func newGame() {
         //reset solutiontext box
         SolutionTextField.text = ""
+        //Display points
+        pointsDisplay.text = ""
         //hide play again button
         PlayAgainButton.isHidden = true
         //unhide lever
