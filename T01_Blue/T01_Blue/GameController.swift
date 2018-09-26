@@ -17,8 +17,11 @@ class GameController : UIViewController, UITextFieldDelegate {
     @IBOutlet var BoxesStackView: UIStackView!
     @IBOutlet var SolutionTextField: UITextField!
     @IBOutlet var PlayAgainButton: UIButton!
+<<<<<<< HEAD
     @IBOutlet weak var Hint: UILabel!
 
+=======
+>>>>>>> 3ac6121a5d37e274483d3eaaf9907c0d2ff16b83
     var audioPlayer: AVAudioPlayer! //add audio player
     
     //class variables
@@ -33,6 +36,9 @@ class GameController : UIViewController, UITextFieldDelegate {
     var guessesReamining: Int = 0
     var score = 0
     var index = 0
+    
+    //create array of images to animate the lever
+    let LeverImages = [#imageLiteral(resourceName: "frame_00_delay-2s"),#imageLiteral(resourceName: "frame_01_delay-0.05s"),#imageLiteral(resourceName: "frame_02_delay-0.04s"),#imageLiteral(resourceName: "frame_03_delay-0.03s"),#imageLiteral(resourceName: "frame_04_delay-0.02s"),#imageLiteral(resourceName: "frame_05_delay-0.02s"),#imageLiteral(resourceName: "frame_06_delay-0.02s"),#imageLiteral(resourceName: "frame_07_delay-0.02s"),#imageLiteral(resourceName: "frame_08_delay-0.02s")]
     
     //create array of images to animate the lever
     let LeverImages = [#imageLiteral(resourceName: "frame_00_delay-2s"),#imageLiteral(resourceName: "frame_01_delay-0.05s"),#imageLiteral(resourceName: "frame_02_delay-0.04s"),#imageLiteral(resourceName: "frame_03_delay-0.03s"),#imageLiteral(resourceName: "frame_04_delay-0.02s"),#imageLiteral(resourceName: "frame_05_delay-0.02s"),#imageLiteral(resourceName: "frame_06_delay-0.02s"),#imageLiteral(resourceName: "frame_07_delay-0.02s"),#imageLiteral(resourceName: "frame_08_delay-0.02s")]
