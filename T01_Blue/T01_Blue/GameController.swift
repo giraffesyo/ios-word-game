@@ -18,7 +18,14 @@ class GameController : UIViewController, UITextFieldDelegate {
     @IBOutlet var SolutionTextField: UITextField!
     @IBOutlet var PlayAgainButton: UIButton!
     @IBOutlet weak var Hint: UILabel!
+    
     var audioPlayer: AVAudioPlayer! //add audio player
+    var incorrectAudioPlayer:AVAudioPlayer! // incorrect audio player
+    var themeAudioPlayer:AVAudioPlayer! // theme song audio player
+    var woodAudioPlayer:AVAudioPlayer! // audio player for wood sound effect
+    @IBOutlet weak var audioButton: UIButton! // audio button
+    @IBOutlet weak var muteButton: UIButton! // mute button
+    var unmuted: Bool = true // used to enable/disable audio
     
     //class variables
     let points:[Int] = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30, 40, 40, 40, 50, 50, 50, 100, 100, 250, 500]
@@ -38,6 +45,7 @@ class GameController : UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // audio for lever
         guard let audioSourceURL = Bundle.main.url(forResource: "wheelsound2", withExtension: "wav")
             else {
                 print("can not find audio")
@@ -53,9 +61,83 @@ class GameController : UIViewController, UITextFieldDelegate {
             print("error")
         }
 
+        // audio for theme song
+        guard let themeAudioSourceURL = Bundle.main.url(forResource: "theme", withExtension: "wav")else{
+            print("cannot find audio file")
+            return
+        }
         
+        do{
+            themeAudioPlayer = try AVAudioPlayer(contentsOf: themeAudioSourceURL)
+            
+            // buffer the audio player
+            themeAudioPlayer.prepareToPlay()
+        }
+        catch{
+            print("cannot create audio player")
+            print(error)
+        }
+        
+        // audio for incorrect guess
+        guard let IncorrectAudioSourceURL = Bundle.main.url(forResource: "incorrect", withExtension: "mp3")else{
+            print("cannot find audio file")
+            return
+        }
+        
+        do{
+            incorrectAudioPlayer = try AVAudioPlayer(contentsOf: IncorrectAudioSourceURL)
+            
+            // buffer the audio player
+            incorrectAudioPlayer.prepareToPlay()
+        }
+        catch{
+            print("cannot create audio player")
+            print(error)
+        }
+        
+        // audio for clicked wood
+        guard let woodAudioSourceURL = Bundle.main.url(forResource: "wood chop", withExtension: "mp3")else{
+            print("cannot find audio file")
+            return
+        }
+        
+        do{
+            woodAudioPlayer = try AVAudioPlayer(contentsOf: woodAudioSourceURL)
+            
+            // buffer the audio player
+            woodAudioPlayer.prepareToPlay()
+        }
+        catch{
+            print("cannot create audio player")
+            print(error)
+        }
+        
+        muteButton.isHidden = true
         SolutionTextField.delegate = self
         self.newGame()
+    }
+    
+    // mutes the audio
+    @IBAction func unmuteButton(_ sender: UIButton) {
+        audioButton.isHidden = true
+        muteButton.isHidden = false
+        // stops music if pressed on gameover
+        if themeAudioPlayer.isPlaying{
+            themeAudioPlayer.stop()
+        }
+        unmuted = false
+    }
+    
+    // unmutes the audio
+    @IBAction func muteButton(_ sender: UIButton) {
+        muteButton.isHidden = true
+        audioButton.isHidden = false
+        // plays music if pressed on gameover
+        if PlayAgainButton.isHidden == false{
+            themeAudioPlayer.currentTime = 0
+            themeAudioPlayer.play()
+        }
+        unmuted = true
     }
     
     func setRevealsRemaining(amount: Int) {
@@ -98,9 +180,9 @@ class GameController : UIViewController, UITextFieldDelegate {
             leverImageView.animationDuration = 1
             leverImageView.animationRepeatCount = 0
             leverImageView.startAnimating()
-            self.audioPlayer.play()
-    
-            
+            if unmuted{
+                self.audioPlayer.play()
+            }
         } else {
             //couldnt unwrap we'll just proceed with text
             leverButton.titleLabel!.text = "Pull this!"
@@ -168,6 +250,11 @@ class GameController : UIViewController, UITextFieldDelegate {
         //The letter is stored in sender.name
         let letterTapped: Character = Character(sender.name!)
         if revealsRemaining > 0{
+            // play wood sound effect if not muted
+            if unmuted{
+                woodAudioPlayer.currentTime = 0
+                woodAudioPlayer.play()
+            }
             revealLetters(letter: letterTapped)
             self.decrementRevealsReamining()
             //self.showHint(amount: 2, index: index)
@@ -262,6 +349,11 @@ class GameController : UIViewController, UITextFieldDelegate {
     
     func removeLife(){
         self.guessesReamining = self.guessesReamining - 1
+        // play incorrect sound
+        if unmuted{
+            incorrectAudioPlayer.play()
+        }
+        
         switch(self.guessesReamining){
         case 2:
             self.strikeOne.isHidden = false
@@ -290,9 +382,17 @@ class GameController : UIViewController, UITextFieldDelegate {
         // but the screen doesn't change its state
         self.revealsRemaining = 0
         self.PlayAgainButton.isHidden = false
-        
+        // play theme song if unmuted
+        if unmuted{
+            themeAudioPlayer.numberOfLoops = -1 //plays music indefinitely until play again button is pressed
+            themeAudioPlayer.currentTime = 0
+            themeAudioPlayer.play()
+        }
     }
     @IBAction func PlayAgainButtonPressed(_ sender: UIButton) {
+        // stop playing theme song
+        themeAudioPlayer.stop()
+        
         //start a new game
         newGame()
         

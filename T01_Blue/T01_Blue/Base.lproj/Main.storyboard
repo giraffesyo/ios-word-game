@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NNI-fU-UYo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NNI-fU-UYo">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -210,6 +210,22 @@
                                 <color key="textColor" red="0.97396840900000003" green="1" blue="0.94802779829999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rfV-vo-yHQ" userLabel="Mute Button">
+                                <rect key="frame" x="21" y="51" width="51" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="mute"/>
+                                <connections>
+                                    <action selector="muteButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CUn-7C-eSf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyh-im-M7b" userLabel="Audio Button">
+                                <rect key="frame" x="21" y="51" width="51" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="speaker"/>
+                                <connections>
+                                    <action selector="unmuteButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oUQ-pF-1tJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.24705882352941178" green="0.5607843137254902" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -220,7 +236,9 @@
                         <outlet property="PlayAgainButton" destination="I0q-4g-cbS" id="WgS-wr-Cka"/>
                         <outlet property="RevealsRemainingLabel" destination="CCN-5X-BtM" id="Uuh-dD-rMc"/>
                         <outlet property="SolutionTextField" destination="cwx-oE-UXT" id="Y1I-8M-taY"/>
+                        <outlet property="audioButton" destination="iyh-im-M7b" id="UWY-dD-qBN"/>
                         <outlet property="leverButton" destination="JbQ-45-ABw" id="n5d-NW-1jc"/>
+                        <outlet property="muteButton" destination="rfV-vo-yHQ" id="y5C-eg-7zb"/>
                         <outlet property="pointsDisplay" destination="sKa-HZ-2jt" id="szB-Yt-LQE"/>
                         <outlet property="scoreDisplay" destination="nxR-sN-LFS" id="Cif-KB-yqE"/>
                         <outlet property="solveButton" destination="pva-JV-I3Z" id="OpU-pW-H5A"/>
@@ -245,7 +263,9 @@
         <image name="btnPlayAgain" width="202" height="48"/>
         <image name="btnStart" width="130" height="48"/>
         <image name="frame_00_delay-2s" width="500" height="500"/>
+        <image name="mute" width="64" height="64"/>
         <image name="object_04_star" width="400" height="400"/>
         <image name="object_07_tank" width="400" height="400"/>
+        <image name="speaker" width="64" height="64"/>
     </resources>
 </document>

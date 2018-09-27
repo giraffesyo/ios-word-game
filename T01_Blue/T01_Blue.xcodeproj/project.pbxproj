@@ -12,6 +12,10 @@
 		4B076EE42148A5560087E776 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B076EE22148A5560087E776 /* Main.storyboard */; };
 		4B076EE62148A55E0087E776 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B076EE52148A55E0087E776 /* Assets.xcassets */; };
 		4B076EE92148A55E0087E776 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B076EE72148A55E0087E776 /* LaunchScreen.storyboard */; };
+		4B43E3E9215D768F00526EBF /* wood chop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4B43E3E5215D768D00526EBF /* wood chop.mp3 */; };
+		4B43E3EA215D768F00526EBF /* incorrect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4B43E3E6215D768E00526EBF /* incorrect.mp3 */; };
+		4B43E3EB215D768F00526EBF /* theme.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4B43E3E7215D768F00526EBF /* theme.wav */; };
+		4B43E3EC215D768F00526EBF /* Correct sound effect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4B43E3E8215D768F00526EBF /* Correct sound effect.mp3 */; };
 		51F31C1721547398009D3140 /* LetterBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F31C1621547398009D3140 /* LetterBox.swift */; };
 		C5543EB92159FBC700A53357 /* wheelsound2.wav in Resources */ = {isa = PBXBuildFile; fileRef = C5543EB82159FBC700A53357 /* wheelsound2.wav */; };
 		F897F1FE21574E7C00E07859 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897F1FD21574E7C00E07859 /* SplashScreen.swift */; };
@@ -25,6 +29,10 @@
 		4B076EE52148A55E0087E776 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B076EE82148A55E0087E776 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B076EEA2148A55E0087E776 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B43E3E5215D768D00526EBF /* wood chop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "wood chop.mp3"; sourceTree = "<group>"; };
+		4B43E3E6215D768E00526EBF /* incorrect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = incorrect.mp3; sourceTree = "<group>"; };
+		4B43E3E7215D768F00526EBF /* theme.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = theme.wav; sourceTree = "<group>"; };
+		4B43E3E8215D768F00526EBF /* Correct sound effect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Correct sound effect.mp3"; sourceTree = "<group>"; };
 		51F31C1621547398009D3140 /* LetterBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterBox.swift; sourceTree = "<group>"; };
 		C5543EB82159FBC700A53357 /* wheelsound2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wheelsound2.wav; sourceTree = "<group>"; };
 		F897F1F421574A2C00E07859 /* T01_Blue-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "T01_Blue-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -86,6 +94,10 @@
 		C54DE53E2159F341002BD211 /* Audio Assets */ = {
 			isa = PBXGroup;
 			children = (
+				4B43E3E8215D768F00526EBF /* Correct sound effect.mp3 */,
+				4B43E3E6215D768E00526EBF /* incorrect.mp3 */,
+				4B43E3E7215D768F00526EBF /* theme.wav */,
+				4B43E3E5215D768D00526EBF /* wood chop.mp3 */,
 				C5543EB82159FBC700A53357 /* wheelsound2.wav */,
 			);
 			path = "Audio Assets";
@@ -157,8 +169,12 @@
 			files = (
 				4B076EE92148A55E0087E776 /* LaunchScreen.storyboard in Resources */,
 				4B076EE62148A55E0087E776 /* Assets.xcassets in Resources */,
+				4B43E3E9215D768F00526EBF /* wood chop.mp3 in Resources */,
 				4B076EE42148A5560087E776 /* Main.storyboard in Resources */,
+				4B43E3EA215D768F00526EBF /* incorrect.mp3 in Resources */,
 				C5543EB92159FBC700A53357 /* wheelsound2.wav in Resources */,
+				4B43E3EC215D768F00526EBF /* Correct sound effect.mp3 in Resources */,
+				4B43E3EB215D768F00526EBF /* theme.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
