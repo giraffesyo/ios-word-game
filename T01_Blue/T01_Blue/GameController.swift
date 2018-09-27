@@ -36,7 +36,7 @@ class GameController : UIViewController, UITextFieldDelegate {
     var boxes: [LetterBox] = []
     var revealsRemaining: Int = 0
     var currentPointValue: Int = 0
-    var guessesReamining: Int = 0
+    var guessesRemaining: Int = 0
     var score = 0
     var index = 0
     
@@ -170,7 +170,6 @@ class GameController : UIViewController, UITextFieldDelegate {
         emptyBoxes()
         //give them two reveals and 3 guesses
         setRevealsRemaining(amount: 2)
-        resetStrikes()
         
         //show the reveals remaining label
         RevealsRemainingLabel.isHidden = false
@@ -332,8 +331,6 @@ class GameController : UIViewController, UITextFieldDelegate {
         self.Hint.isHidden = true
         //show the lever
         self.leverButton.isHidden = false
-        //reset strikes to hidden
-        self.resetStrikes()
         //hide reveals remaining label
         self.RevealsRemainingLabel.isHidden = true
         //reveal the boxes
@@ -341,20 +338,20 @@ class GameController : UIViewController, UITextFieldDelegate {
     }
     
     func resetStrikes() {
-        self.guessesReamining = 3
+        self.guessesRemaining = 3
         strikeOne.isHidden = true
         strikeTwo.isHidden = true
         strikeThree.isHidden = true
     }
     
     func removeLife(){
-        self.guessesReamining = self.guessesReamining - 1
+        self.guessesRemaining = self.guessesRemaining - 1
         // play incorrect sound
         if unmuted{
             incorrectAudioPlayer.play()
         }
         
-        switch(self.guessesReamining){
+        switch(self.guessesRemaining){
         case 2:
             self.strikeOne.isHidden = false
             break
